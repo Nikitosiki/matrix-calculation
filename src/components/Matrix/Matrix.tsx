@@ -1,24 +1,21 @@
 import { FC } from "react";
 
-// const styles = stylex.create({
-//   table: {
-//     border: "1px solid",
-//     paddingHorizontal: "0.5rem",
-//   },
-// });
-
-const Matrix: FC<{ value: number[][] }> = ({ value }) => {
+const Matrix: FC<{ value: number[][] | number[] }> = ({ value }) => {
   return (
     <>
       <table>
         <tbody>
-          {value.map((row, rowIndex) => (
-            <tr key={rowIndex} className="">
-              {row.map((value, colIndex) => (
-                <td key={colIndex} className="">
-                  {value}
-                </td>
-              ))}
+          {value.map((rowVal, rowIndex) => (
+            <tr key={rowIndex} className="border">
+              {Array.isArray(rowVal) ? (
+                rowVal.map((colVal, colIndex) => (
+                  <td key={colIndex} className="min-w-8 border p-1 text-center">
+                    {colVal}
+                  </td>
+                ))
+              ) : (
+                <td className="min-w-8 border p-1 text-center">{rowVal}</td>
+              )}
             </tr>
           ))}
         </tbody>
