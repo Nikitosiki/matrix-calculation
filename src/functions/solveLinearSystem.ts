@@ -1,6 +1,9 @@
 import inverseMatrix from "./inverseMatrix";
 
-function solveLinearSystem(matrix: number[][], constants: number[]): number[] | null {
+function solveLinearSystem(
+  matrix: number[][],
+  constants: number[],
+): number[] | null {
   const n = matrix.length;
 
   const inverse = inverseMatrix(matrix);

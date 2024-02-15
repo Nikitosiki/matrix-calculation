@@ -1,3 +1,7 @@
+export function deepCloneMatrix(array: number[][]): number[][] {
+  return array.map((row) => row.slice());
+}
+
 export function isSquareMatrix(matrix: number[][]): boolean {
   const rows = matrix.length;
   if (rows === 0) {

@@ -21,7 +21,7 @@ const SelectSize: FC<ISelectSize> = ({ selectProps, optionProps }) => {
         {...selectProps}
       >
         {Array.from({ length: 9 }, (_, index) => (
-          <option value={index + 1} {...optionProps}>
+          <option key={index} value={index + 1} {...optionProps}>
             {index + 1}
           </option>
         ))}
