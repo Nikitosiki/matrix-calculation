@@ -6,9 +6,10 @@ function inverseMatrix(matrix: number[][]): number[][] | null {
     return null;
   }
 
-  matrix.forEach((_, index) => {
+  for (let index = 0; index < matrix.length; index++) {
+    if (matrix[index][index] === 0) return null;
     matrix = jordanStep(matrix, index);
-  });
+  }
 
   return matrix;
 }
