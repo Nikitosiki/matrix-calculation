@@ -1,6 +1,6 @@
 import inverseMatrix from "./inverseMatrix";
 
-function solveLinearSystem(
+function linearSystemSolution(
   matrix: number[][],
   constants: number[],
 ): number[] | null {
@@ -24,4 +24,4 @@ function solveLinearSystem(
   return solution;
 }
 
-export default solveLinearSystem;
+export default linearSystemSolution;

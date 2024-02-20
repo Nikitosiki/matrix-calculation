@@ -1,4 +1,4 @@
-import solveLinearSystem from "../functions/solveLinearSystem";
+import linearSystemSolution from "../functions/linearSystemSolution";
 import { toStrictEqual1Array } from "./toStrictEqualArray";
 
 test("solve_linear_system_test-1", () => {
@@ -12,7 +12,7 @@ test("solve_linear_system_test-1", () => {
 
   const output = [1, 2, 2];
 
-  const result = solveLinearSystem(matrix, constants);
+  const result = linearSystemSolution(matrix, constants);
   expect(toStrictEqual1Array(output, result ?? [])).toBe(true);
 });
 
@@ -27,7 +27,7 @@ test("solve_linear_system_test-2", () => {
 
   const output = [-1, 1, 1];
 
-  const result = solveLinearSystem(matrix, constants);
+  const result = linearSystemSolution(matrix, constants);
   expect(toStrictEqual1Array(output, result ?? [])).toBe(true);
 });
 
@@ -42,6 +42,6 @@ test("solve_linear_system_test-3", () => {
 
   const output = [1, -1, -1];
 
-  const result = solveLinearSystem(matrix, constants);
+  const result = linearSystemSolution(matrix, constants);
   expect(toStrictEqual1Array(output, result ?? [])).toBe(true);
 });
