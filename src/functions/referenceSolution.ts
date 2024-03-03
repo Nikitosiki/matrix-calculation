@@ -1,4 +1,5 @@
 import modJordanStep from "./modJardanStep";
+import { roundedMatrix } from "./utils";
 
 export interface positionXY {
   top: string[];
@@ -12,7 +13,7 @@ export interface referenceSolutionResult {
   log: string;
 }
 
-const genPositionXY = (countX: number, countY: number): positionXY => {
+export const genPositionXY = (countX: number, countY: number): positionXY => {
   const position: positionXY = {
     top: [],
     left: [],
@@ -43,9 +44,12 @@ export function referenceSolution(
     log: "This is strange",
   };
 
-  ret.positionXY = positionXY ? positionXY : genPositionXY(ret.matrix[0].length - 1, ret.matrix.length - 1);
+  ret.positionXY = positionXY
+    ? positionXY
+    : genPositionXY(ret.matrix[0].length - 1, ret.matrix.length - 1);
 
   const last = (log: string) => {
+    ret.matrix = roundedMatrix(ret.matrix)
     ret.log = log;
     calcSolution(ret);
     return ret;
@@ -86,17 +90,29 @@ export function referenceSolution(
   return last("I think I'm broken");
 }
 
-const calcSolution = (val: referenceSolutionResult) => {
+export const calcSolution = (val: referenceSolutionResult) => {
   const solution: number[] = [];
 
   for (let i = 1; i <= val.matrix[0].length - 1; i++) {
     solution.push(0);
   }
 
-  val.positionXY.left.forEach((element) => {
-    if (element.charAt(0) === "x") {
-      const index = Number(element.charAt(1));
-      solution[index - 1] = val.matrix[index][val.matrix[index].length - 1];
+  // val.positionXY.left.forEach((element) => {
+  //   if (element.charAt(0) === "x") {
+  //     const index = Number(element.charAt(1));
+  //     solution[index - 1] = val.matrix[index][val.matrix[index - 1].length - 1];
+  //   }
+  // });
+
+  val.positionXY.left.forEach((row, index) => {
+    if (row.startsWith("x")) {
+      const digitAfterX = row.substring(1);
+      try {
+        const result = parseInt(digitAfterX, 10);
+        solution[result - 1] = val.matrix?.[index]?.slice(-1)[0] ?? 0;
+      } catch (e) {
+        console.log("Ouch");
+      }
     }
   });
 
