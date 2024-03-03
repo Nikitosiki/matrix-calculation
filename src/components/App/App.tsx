@@ -4,6 +4,7 @@ import Matrix from "../Matrix/Matrix";
 import SelectSize from "../SelectSize/SelectSize";
 import Panel from "../Panel/Panel";
 import Result from "../Result/Result";
+import referenceSolution from "../../functions/referenceSolution";
 
 function App() {
   const [sizeMatrix, setSizeMatrix] = useState({ x: 2, y: 2 });
@@ -74,6 +75,18 @@ function App() {
       return newMatrix;
     });
   };
+
+
+
+
+  const matrix = [
+    [1, 1, -1, -2, 6],
+    [-1, -1, -1, 1, -5],
+    [2, -1, 3, 4, 10],
+    [-1, -2, 1, 1, 0],
+  ];
+
+  console.log(referenceSolution(matrix));
 
   return (
     <>
