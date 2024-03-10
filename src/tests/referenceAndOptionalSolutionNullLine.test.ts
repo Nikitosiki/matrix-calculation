@@ -42,13 +42,61 @@ test("test-1", () => {
   };
 
   const matrixWithoutNullLines = removeNullLines(matrix, positionXY);
-  console.log("Matrix without null lines:", matrixWithoutNullLines);
+  // console.log("Matrix without null lines:", matrixWithoutNullLines);
 
-  const matrixReference = referenceSolution(matrixWithoutNullLines.matrix ?? [], matrixWithoutNullLines.xyPos);
-  console.log("Search for a reference junction:", matrixReference);
+  const matrixReference = referenceSolution(matrixWithoutNullLines.matrix ?? [], matrixWithoutNullLines.positionXY);
+  // console.log("Search for a reference junction:", matrixReference);
 
   const matrixOptimal = optimalSolution(matrixReference.matrix, matrixReference.positionXY);
-  console.log("Search for a optional junction:", matrixOptimal);
+  // console.log("Search for a optional junction:", matrixOptimal);
+
+  expect(toStrictEqual2Array(correctWithoutNullLines, matrixWithoutNullLines.matrix ?? [])).toBe(true);
+  expect(toStrictEqual2Array(correctReference, matrixReference.matrix)).toBe(true);
+  expect(toStrictEqual2Array(correctOptimal, matrixOptimal.matrix)).toBe(true);
+});
+
+test("test-1-14", () => {
+  const matrix = [
+    [1, 1, 1, 1, 1, 3, 4],
+    [1, -4, 0, 1, 10, -1, 5],
+    [-1, -3, -7, -1, -15, 1, -2],
+    [-1, -2, 1, 1, 0, -1, 0],
+  ];
+
+  const correctWithoutNullLines: number[][] = [
+    [ -2, -6, 0, -14, 4, 2 ],
+    [ -5, -1, 0, 9, -4, 1 ],
+    [ 1, 1, 1, 1, 3, 4 ],
+    [ -1, 2, 2, 1, 2, 4 ]
+  ];
+
+  const correctReference: number[][] = [
+    [ -2, -6, 0, -14, 4, 2 ],
+    [ -5, -1, 0, 9, -4, 1 ],
+    [ 1, 1, 1, 1, 3, 4 ],
+    [ -1, 2, 2, 1, 2, 4 ]
+  ];
+
+  const correctOptimal: number[][] = [
+    [ 2, -4, 2, -12, 10, 10 ],
+    [ 5, 4, 5, 14, 11, 21 ],
+    [ 1, 1, 1, 1, 3, 4 ],
+    [ 1, 3, 3, 2, 5, 8 ]
+  ];
+
+  const positionXY: positionXY = {
+    top: ["x1", "x2", "x3", "x4", "x5", "x6"],
+    left: ["0", "y1", "y2"]
+  };
+
+  const matrixWithoutNullLines = removeNullLines(matrix, positionXY);
+  // console.log("Matrix without null lines:", matrixWithoutNullLines);
+
+  const matrixReference = referenceSolution(matrixWithoutNullLines.matrix ?? [], matrixWithoutNullLines.positionXY);
+  // console.log("Search for a reference junction:", matrixReference);
+
+  const matrixOptimal = optimalSolution(matrixReference.matrix, matrixReference.positionXY);
+  // console.log("Search for a optional junction:", matrixOptimal);
 
   expect(toStrictEqual2Array(correctWithoutNullLines, matrixWithoutNullLines.matrix ?? [])).toBe(true);
   expect(toStrictEqual2Array(correctReference, matrixReference.matrix)).toBe(true);

@@ -1,83 +1,81 @@
 import modJordanStep from "./modJardanStep";
 import { minimalPositive, positionXY } from "./referenceSolution";
-import { deepCloneMatrix } from "./utils";
+import { deepCloneMatrix, roundedMatrix } from "./utils";
 
-enum Result {
-  Solved,
-  ContradictoryRestrictions,
-  NoSolve,
-}
-
-interface Solve {
-  matrix: number[][] | null;
-  result: Result;
-  xyPos: positionXY;
+export interface solutionResult {
+  matrix: number[][];
+  positionXY: positionXY;
+  log: string;
 }
 
 export function removeNullLines(
   matrix: number[][],
   positionXY: positionXY,
-): Solve {
-  let newMatrix: number[][] = deepCloneMatrix(matrix);
-  let xyPos: positionXY = {
-    top: positionXY.top,
-    left: positionXY.left,
+): solutionResult {
+  const ret: solutionResult = {
+    matrix: deepCloneMatrix(matrix),
+    positionXY: positionXY,
+    log: "This is strange",
   };
 
-  while (true) {
-    const rowIndex: number | null = findRowWithZero(xyPos.left);
+  const last = (log: string) => {
+    ret.matrix = roundedMatrix(ret.matrix);
+    ret.log = log;
+    return ret;
+  };
+
+  if (ret.matrix.length < 2 || ret.matrix[0].length < 2) {
+    return last("The matrix size is incorrect");
+  }
+
+  // eslint-disable-next-line no-constant-condition
+  for (let index = 0; index < 9999; index++) {
+    const rowIndex: number | null = findRowWithZero(ret.positionXY.left);
 
     if (rowIndex === null) {
-      return {
-        matrix: newMatrix,
-        result: Result.Solved,
-        xyPos: xyPos,
-      };
+      // Розвёязок вже знайдено
+      return last("A reference solution has already been found");
     }
 
     let currentColumn: number | null = null;
-    for (let column = 0; column < newMatrix[rowIndex].length; column++) {
-      if (newMatrix[rowIndex][column] > 0) {
+    for (let column = 0; column < ret.matrix[rowIndex].length; column++) {
+      if (ret.matrix[rowIndex][column] > 0) {
           currentColumn = column;
           break;
       }
   }
 
     if (currentColumn === null) {
-      return {
-        matrix: newMatrix,
-        result: Result.ContradictoryRestrictions,
-        xyPos: xyPos,
-      };
+      // Я не думав, що це колись станеться
+      return last("I didn't think this would ever happen");
     }
 
-    const minimalPositiveRow = minimalPositive(newMatrix, currentColumn)!;
+    const minimalPositiveRow = minimalPositive(ret.matrix, currentColumn)!;
 
-    const result = modJordanStep(newMatrix, minimalPositiveRow, currentColumn);
+    const result = modJordanStep(ret.matrix, minimalPositiveRow, currentColumn);
 
     if (result === null) {
-      return {
-        matrix: null,
-        result: Result.NoSolve,
-        xyPos: xyPos,
-      };
+      // Немає рішення
+      return last("This can't be solved");
     }
 
-    newMatrix = result;
+    ret.matrix = result;
 
-    const temp1 = xyPos.top[currentColumn];
-    const temp2 = xyPos.left[minimalPositiveRow];
-    xyPos.left[minimalPositiveRow] = temp1;
-    xyPos.top[currentColumn] = temp2;
+    const temp1 = ret.positionXY.top[currentColumn];
+    const temp2 = ret.positionXY.left[minimalPositiveRow];
+    ret.positionXY.left[minimalPositiveRow] = temp1;
+    ret.positionXY.top[currentColumn] = temp2;
 
-    if (xyPos.top[currentColumn] === "0") {
-      newMatrix = removeColumn(newMatrix, currentColumn);
-      xyPos = {
-        top: xyPos.top.filter((_, index) => index !== currentColumn),
-        left: xyPos.left,
+    if (ret.positionXY.top[currentColumn] === "0") {
+      ret.matrix = removeColumn(ret.matrix, currentColumn);
+      ret.positionXY = {
+        top: ret.positionXY.top.filter((_, index) => index !== currentColumn),
+        left: ret.positionXY.left,
       };
     }
   }
+
+  return last("I think I'm broken");
 }
 
 function findRowWithZero(matrix: string[]): number | null {
