@@ -1,5 +1,5 @@
 import modJordanStep from "./modJardanStep";
-import { calcSolution, positionXY, referenceSolutionResult } from "./referenceSolution";
+import { calcSolution, minimalPositive, positionXY, referenceSolutionResult } from "./referenceSolution";
 import { roundedMatrix } from "./utils";
 
 export function optimalSolution(
@@ -39,14 +39,7 @@ export function optimalSolution(
       return last("A optional solution has already been found");
     }
 
-    let rowNumberMinimalPositive: number | null = null;
-
-    for (let i = 0; i < ret.matrix.length; i++) {
-      if (ret.matrix[i][colNumberNegativeZElement] <= 0) continue;
-      if (rowNumberMinimalPositive === null || ret.matrix[i][colNumberNegativeZElement] > ret.matrix[rowNumberMinimalPositive][colNumberNegativeZElement]) {
-        rowNumberMinimalPositive = i;
-      }
-    }
+    const rowNumberMinimalPositive = minimalPositive(ret.matrix, colNumberNegativeZElement)
 
     if (rowNumberMinimalPositive === null) {
       return last(searchMinimum ? "It seems we have no lower limit" : "It seems we have no upper limit");

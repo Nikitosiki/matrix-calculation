@@ -136,7 +136,7 @@ function searchForNegativeElement(array: number[]): number | null {
 /**
  * @returns {number | null} Индекс найденой строки
  */
-function minimalPositive(matrix: number[][], colNumber: number): number | null {
+export function minimalPositive(matrix: number[][], colNumber: number): number | null {
   if (colNumber < 0 || colNumber >= matrix[0].length) {
     return null;
   }
