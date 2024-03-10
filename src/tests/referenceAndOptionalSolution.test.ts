@@ -108,12 +108,12 @@ test("reference_solution_test-3-14", () => {
     [-2, -1, 1, 1, 0],
   ];
   const correct = [
-    [ -1, 2, 4, 4, 10 ],
-    [ 1, 1, 1, -1, 5 ],
-    [ -2, -1, -2, -4, -12 ],
-    [ -1, -2, 1, 1, 0 ],
+    [3.5, 2, 5, 0.5, 14],
+    [0.833, 0.667, 1, -0.167, 5.333],
+    [-0.167, -0.333, 0, -0.167, 0.333],
+    [-1, 1, 2, 0, 5],
   ];
-  const correctX = [ 0, 0, 0, 0 ];
+  const correctX = [0, 5.333, 0, 0.333];
 
   const reference = referenceSolution(matrix);
   // console.log("Search for a reference junction:", reference);
@@ -131,12 +131,12 @@ test("optional_solution_test-3-14", () => {
   ];
 
   const correct = [
-    [ 0.333, 0.333, 1.667, 1, 5 ],
-    [ 0.667, -0.333, -0.667, -2, 0 ],
-    [ 1.667, -0.333, -1.667, -7, -7 ],
-    [ 1.333, 0.333, 3.667, 1, 10 ],
+    [0.286, 0.571, 1.429, 0.143, 4],
+    [-0.238, 0.191, -0.19, -0.286, 2.001],
+    [0.048, -0.238, 0.239, -0.143, 1.001],
+    [0.286, 1.571, 3.429, 0.143, 9],
   ];
-  const correctX = [5, 0, 0, 0];
+  const correctX = [4, 2.001, 0, 1.001];
   // console.log("Matrix:", matrix);
 
   const reference = referenceSolution(matrix);

@@ -49,7 +49,7 @@ export function referenceSolution(
     : genPositionXY(ret.matrix[0].length - 1, ret.matrix.length - 1);
 
   const last = (log: string) => {
-    ret.matrix = roundedMatrix(ret.matrix)
+    ret.matrix = roundedMatrix(ret.matrix);
     ret.log = log;
     calcSolution(ret);
     return ret;
@@ -142,17 +142,21 @@ function minimalPositive(matrix: number[][], colNumber: number): number | null {
   }
 
   let minimalPositiveIndex: number | null = null;
-  let minimalPositiveValue = 0.0;
+  let minimalPositiveValue = Number.MAX_VALUE;
 
-  for (let row = 0; row <= matrix.length - 2; row++) {
-      const currentValue = matrix[row][matrix[row].length - 1] / matrix[row][colNumber];
+  for (let row = 0; row < matrix.length - 1; row++) {
+    if (matrix[row][colNumber] === 0) continue;
+    if (matrix[row][matrix[row].length - 1] === 0 && matrix[row][colNumber] < 0)
+      continue;
 
-      if (minimalPositiveIndex === null || currentValue < minimalPositiveValue) {
-          minimalPositiveIndex = row;
-          minimalPositiveValue = currentValue;
-      }
+    const currentValue =
+      matrix[row][matrix[row].length - 1] / matrix[row][colNumber];
+    if (currentValue < 0) continue;
+    if (currentValue < minimalPositiveValue) {
+      minimalPositiveIndex = row;
+      minimalPositiveValue = currentValue;
+    }
   }
 
   return minimalPositiveIndex;
 }
-
