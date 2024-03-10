@@ -141,18 +141,18 @@ function minimalPositive(matrix: number[][], colNumber: number): number | null {
     return null;
   }
 
-  let minimalPositiveValue: number | null = null;
+  let minimalPositiveIndex: number | null = null;
+  let minimalPositiveValue = 0.0;
 
-  for (let row = 0; row < matrix.length; row++) {
-    const currentValue = matrix[row][colNumber];
+  for (let row = 0; row <= matrix.length - 2; row++) {
+      const currentValue = matrix[row][matrix[row].length - 1] / matrix[row][colNumber];
 
-    if (
-      currentValue >= 0 &&
-      (minimalPositiveValue === null || currentValue < minimalPositiveValue)
-    ) {
-      minimalPositiveValue = currentValue;
-    }
+      if (minimalPositiveIndex === null || currentValue < minimalPositiveValue) {
+          minimalPositiveIndex = row;
+          minimalPositiveValue = currentValue;
+      }
   }
 
-  return minimalPositiveValue;
+  return minimalPositiveIndex;
 }
+
