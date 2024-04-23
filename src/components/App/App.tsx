@@ -4,6 +4,8 @@ import Matrix from "../Matrix/Matrix";
 import SelectSize from "../SelectSize/SelectSize";
 import Panel from "../Panel/Panel";
 import Result from "../Result/Result";
+import { referenceSolution } from "../../functions/referenceSolution";
+import { optimalSolution } from "../../functions/optimalSolution";
 
 function App() {
   const [sizeMatrix, setSizeMatrix] = useState({ x: 2, y: 2 });
@@ -74,6 +76,7 @@ function App() {
       return newMatrix;
     });
   };
+
 
   return (
     <>

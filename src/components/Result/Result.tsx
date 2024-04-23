@@ -3,7 +3,7 @@ import Matrix from "../Matrix/Matrix";
 import inverseMatrix from "../../functions/inverseMatrix";
 import { roundedMatrix, roundedRow } from "../../functions/utils";
 import matrixRank from "../../functions/matrixRank";
-import solveLinearSystem from "../../functions/solveLinearSystem";
+import linearSystemSolution from "../../functions/linearSystemSolution";
 
 interface IResult {
   matrixA: number[][];
@@ -13,7 +13,7 @@ interface IResult {
 const Result: FC<IResult> = ({ matrixA, matrixB }) => {
   const invertedMatrix = inverseMatrix(matrixA);
   const rank = matrixRank(matrixA);
-  const solution = solveLinearSystem(matrixA, matrixB);
+  const solution = linearSystemSolution(matrixA, matrixB);
 
   return (
     <div className="inline-flex flex-col">

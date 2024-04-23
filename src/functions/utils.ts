@@ -1,4 +1,4 @@
-export function deepCloneMatrix(array: number[][]): number[][] {
+export function deepCloneMatrix<T>(array: T[][]): T[][] {
   return array.map((row) => row.slice());
 }
 
@@ -15,6 +15,28 @@ export function isSquareMatrix(matrix: number[][]): boolean {
   }
 
   return true;
+}
+
+export function getMatrixWithoutName(
+  namedMatrix: (number | string)[][],
+): number[][] | null {
+  if (namedMatrix.length < 1 || namedMatrix[0].length < 1) {
+    return null;
+  }
+
+  for (let row = 0; row < namedMatrix.length; row++) {
+    for (let col = 0; col < namedMatrix[row].length; col++) {
+      if (typeof namedMatrix[row][col] !== "number") {
+        return null;
+      }
+    }
+  }
+
+  const processedMatrix: number[][] = namedMatrix
+    .slice(1)
+    .map((row) => row.slice(1).map((element) => Number(element)));
+
+  return processedMatrix;
 }
 
 export function roundedRow(row: number[]) {
