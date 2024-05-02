@@ -90,13 +90,13 @@ test("test-1-14", () => {
   ];
 
   const matrixWithoutNullLines = removeNullLines(matrix, positionXY);
-  console.log("Matrix without null lines:", matrixWithoutNullLines);
+  // console.log("Matrix without null lines:", matrixWithoutNullLines);
 
   const matrixReference = referenceSolution(matrixWithoutNullLines.matrix ?? [], matrixWithoutNullLines.positionXY);
-  console.log("Search for a reference junction:", matrixReference);
+  // console.log("Search for a reference junction:", matrixReference);
 
   const matrixOptimal = optimalSolution(matrixReference.matrix, matrixReference.positionXY);
-  console.log("Search for a optional junction:", matrixOptimal);
+  // console.log("Search for a optional junction:", matrixOptimal);
 
   expect(toStrictEqual2Array(correctWithoutNullLines, matrixWithoutNullLines.matrix ?? [])).toBe(true);
   expect(toStrictEqual2Array(correctReference, matrixReference.matrix)).toBe(true);
