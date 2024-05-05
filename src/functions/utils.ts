@@ -56,3 +56,48 @@ export function printMatrix(matrix: number[][]): void {
     console.log(roundedRow(row).join("\t"));
   }
 }
+
+export function addRow(matrix: number[][], rowIndex: number, newRow: number[]): number[][] {
+  if (rowIndex < 0 || rowIndex > matrix.length) {
+      throw new Error("Invalid rowIndex");
+  }
+  if (newRow.length !== matrix[0].length) {
+      throw new Error("New row size must match the matrix column count");
+  }
+
+  const result: number[][] = [];
+
+  for (let i = 0; i < rowIndex; i++) {
+      result.push(matrix[i]);
+  }
+
+  result.push(newRow);
+
+  for (let i = rowIndex; i < matrix.length; i++) {
+      result.push(matrix[i]);
+  }
+
+  return result;
+}
+
+export function addValueAtPosition(array: string[], position: number, value: string): string[] {
+  // console.log("вфывфывфыв", array, position, value);
+  if (position < 0 || position > array.length) {
+      throw new Error("Invalid position");
+  }
+
+  const resultArray: string[] = Array(array.length + 1).fill("");
+
+  for (let i = 0; i < position; i++) {
+      resultArray[i] = array[i];
+  }
+
+  resultArray[position] = value;
+
+  for (let i = position; i < array.length; i++) {
+      resultArray[i + 1] = array[i];
+  }
+
+  // console.log("вфы123231кувфывфыв", resultArray);
+  return resultArray;
+}
