@@ -90,34 +90,83 @@ export function referenceSolution(
   return last("I think I'm broken");
 }
 
-export const calcSolution = (val: referenceSolutionResult) => {
-  const solution: number[] = [];
+// export const calcSolution = (val: referenceSolutionResult) => {
+//   if (val.matrix === null) return [];
+//   const solution: number[] = Array(val.positionXY.top.length).fill(0);
 
-  for (let i = 1; i <= val.matrix[0].length - 1; i++) {
-    solution.push(0);
+//   // console.log("res solution: ", val.positionXY.left.length, solution, val.matrix);
+
+//   val.positionXY.left.forEach((row, index) => {
+//     if (row.startsWith("x")) {
+//       const digitAfterX = row.substring(1);
+//       try {
+//         const result = parseInt(digitAfterX, 10);
+//         solution[result - 1] = val.matrix?.[index]?.slice(-1)[0] ?? 0;
+//       } catch (e) {
+//         console.log("Ouch");
+//       }
+//     }
+//   });
+
+//   // console.log("val.solution: ", solution)
+
+//   val.solution = solution;
+// };
+
+export const calcSolution = (val: referenceSolutionResult): number[] => {
+  const solution: number[] = new Array(val.positionXY.top.length).fill(0.0);
+
+  for (let index = 0; index < val.positionXY.top.length; index++) {
+    if (val.positionXY.top[index].startsWith("x")) {
+      const digitAfterX = val.positionXY.top[index].substring(1);
+      try {
+        const result = parseInt(digitAfterX);
+        solution[result - 1] = 0;
+      } catch (e) {
+        console.log("Ouch");
+      }
+    }
   }
 
-  // val.positionXY.left.forEach((element) => {
-  //   if (element.charAt(0) === "x") {
-  //     const index = Number(element.charAt(1));
-  //     solution[index - 1] = val.matrix[index][val.matrix[index - 1].length - 1];
-  //   }
-  // });
-
-  val.positionXY.left.forEach((row, index) => {
-    if (row.startsWith("x")) {
-      const digitAfterX = row.substring(1);
+  for (let index = 0; index < val.positionXY.left.length; index++) {
+    if (val.positionXY.left[index].startsWith("x")) {
+      const digitAfterX = val.positionXY.left[index].substring(1);
       try {
-        const result = parseInt(digitAfterX, 10);
-        solution[result - 1] = val.matrix?.[index]?.slice(-1)[0] ?? 0;
+        const result = parseInt(digitAfterX);
+        if (val.matrix && val.matrix[index]) {
+          solution[result - 1] =
+            val.matrix[index][val.matrix[index].length - 1];
+        }
+      } catch (e) {
+        console.log("Ouch");
+      }
+    }
+  }
+
+  val.solution = solution;
+  return solution;
+};
+
+export function calcDualSolution(
+  name: "y" | "x",
+  val: referenceSolutionResult,
+): number[] {
+  if (val.matrix === null) return [];
+  const solution: number[] = Array(val.positionXY.left.length).fill(0);
+
+  val.positionXY.top.forEach((col, index) => {
+    if (col.startsWith(name)) {
+      const digitAfterX = col.substring(name.length);
+      try {
+        const result = parseInt(digitAfterX);
+        solution[result - 1] = val.matrix[val.matrix.length - 1][index];
       } catch (e) {
         console.log("Ouch");
       }
     }
   });
-
-  val.solution = solution;
-};
+  return solution;
+}
 
 const getSingle = (matrix: number[][]): number[] =>
   matrix.map((val) => val[val.length - 1]).slice(0, -1);
@@ -136,7 +185,10 @@ function searchForNegativeElement(array: number[]): number | null {
 /**
  * @returns {number | null} Индекс найденой строки
  */
-export function minimalPositive(matrix: number[][], colNumber: number): number | null {
+export function minimalPositive(
+  matrix: number[][],
+  colNumber: number,
+): number | null {
   if (colNumber < 0 || colNumber >= matrix[0].length) {
     return null;
   }

@@ -17,9 +17,11 @@ test("integer_solution_test-1", () => {
 
   const result = integerSolution(matrix, positionXY);
 
-  console.log("Result (test-1):", result);
+  // console.log("Result (test-1):", result);
 
   expect(toStrictEqual1Array(correctX, result.solution)).toBe(true);
+  expect(toStrictEqual1Array(correctX, correctX)).toBe(true);
+
 });
 
 test("integer_solution_test-2", () => {
@@ -39,7 +41,7 @@ test("integer_solution_test-2", () => {
 
   const result = integerSolution(matrix, positionXY);
 
-  console.log("Result (test-2):", result);
+  // console.log("Result (test-2):", result);
 
   expect(toStrictEqual1Array(correctX, result.solution)).toBe(true);
 });
@@ -61,7 +63,7 @@ test("integer_solution_v-14", () => {
 
   const result = integerSolution(matrix, positionXY);
 
-  console.log("Result (v-14):", result);
+  // console.log("Result (v-14):", result);
 
   expect(toStrictEqual1Array(correctX, result.solution)).toBe(true);
 });

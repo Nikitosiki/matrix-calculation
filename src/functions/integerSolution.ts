@@ -51,8 +51,6 @@ export function integerSolution(
       (x: number) => x % 1 === 0,
     );
 
-    console.log("isAllIntegers", resultOptimal.solution, isAllIntegers)
-
     if (isAllIntegers) return last("Integer solution found", resultOptimal);
 
 
@@ -78,8 +76,6 @@ export function integerSolution(
           value === 0 ? 0 : -(value > 0 ? value % 1 : 1 - Math.abs(value % 1));
       }
     });
-
-    console.log("newRestriction",  newRestriction)
 
     newRestriction = roundedRow(newRestriction)
 
