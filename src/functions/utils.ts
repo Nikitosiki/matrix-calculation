@@ -81,7 +81,6 @@ export function addRow(matrix: number[][], rowIndex: number, newRow: number[]): 
 }
 
 export function addValueAtPosition(array: string[], position: number, value: string): string[] {
-  // console.log("вфывфывфыв", array, position, value);
   if (position < 0 || position > array.length) {
       throw new Error("Invalid position");
   }
@@ -98,6 +97,26 @@ export function addValueAtPosition(array: string[], position: number, value: str
       resultArray[i + 1] = array[i];
   }
 
-  // console.log("вфы123231кувфывфыв", resultArray);
   return resultArray;
 }
+
+// addRow()
+export function addRowPlaceholder(matrix: number[][], newRowPlaceholder: number): number[][] {
+  const result: number[][] = new Array(matrix.length + 1).fill(0).map(() => new Array(matrix[0].length).fill(newRowPlaceholder));
+  for (let i = 0; i < matrix.length; i++) {
+      result[i] = matrix[i];
+  }
+  return result;
+}
+
+// addColumn()
+export function addColumnPlaceholder(matrix: number[][], newColumnPlaceholder: number): number[][] {
+  const result: number[][] = new Array(matrix.length).fill(0).map(() => new Array(matrix[0].length + 1).fill(newColumnPlaceholder));
+  for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+          result[i][j] = matrix[i][j];
+      }
+  }
+  return result;
+}
+

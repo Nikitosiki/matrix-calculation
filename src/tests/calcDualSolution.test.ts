@@ -30,8 +30,8 @@ test("calcDualSolution_test-1", () => {
   const optimal = optimalSolution(reference.matrix, reference.positionXY);
   const dualSolution = calcDualSolution("y", optimal);
 
-  console.log("Result (test-1):", optimal);
-  console.log("U results:", dualSolution);
+  // console.log("Result (test-1):", optimal);
+  // console.log("U results:", dualSolution);
 
   expect(toStrictEqual1Array(correctX, optimal.solution)).toBe(true);
   expect(toStrictEqual1Array(correctU, dualSolution)).toBe(true);
@@ -62,8 +62,8 @@ test("calcDualSolution_test-2", () => {
   const optimal = optimalSolution(reference.matrix, reference.positionXY);
   const dualSolution = calcDualSolution("x", optimal);
 
-  console.log("Result (test-2):", optimal);
-  console.log("V results:", dualSolution);
+  // console.log("Result (test-2):", optimal);
+  // console.log("V results:", dualSolution);
 
   expect(toStrictEqual1Array(correctX, optimal.solution)).toBe(true);
   expect(toStrictEqual1Array(correctV, dualSolution)).toBe(true);
@@ -92,8 +92,8 @@ test("calcDualSolution_test-v14", () => {
   const optimal = optimalSolution(reference.matrix, reference.positionXY);
   const dualSolution = calcDualSolution("y", optimal);
 
-  console.log("Result (test-v14):", optimal);
-  console.log("U results:", dualSolution);
+  // console.log("Result (test-v14):", optimal);
+  // console.log("U results:", dualSolution);
 
   expect(toStrictEqual1Array(correctX, optimal.solution)).toBe(true);
   expect(toStrictEqual1Array(correctU, dualSolution)).toBe(true);
