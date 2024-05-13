@@ -39,9 +39,9 @@ export function getMatrixWithoutName(
   return processedMatrix;
 }
 
-export function roundedRow(row: number[]) {
+export function roundedRow(row: number[], number: number = 1000) {
   return row.map((value) => {
-    const res = Math.round(value * 1000) / 1000;
+    const res = Math.round(value * number) / number;
     if (Object.is(res, -0)) return 0;
     else return res;
   });
