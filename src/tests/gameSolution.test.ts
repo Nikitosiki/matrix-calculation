@@ -1,4 +1,4 @@
-import { printSimulation, printSimulationResult, simulateMatrixGame } from "../functions/gameSimulation";
+// import { printSimulation, printSimulationResult, simulateMatrixGame } from "../functions/gameSimulation";
 import { solveMatrixGame } from "../functions/gameSolution";
 import { toStrictEqual1Array } from "./toStrictEqualArray";
 
@@ -14,27 +14,27 @@ test("gameSolution_test-v14-A1", () => {
     left: ["y1", "y2", "y3"],
   };
 
-  // const correctFirstPlayer = [0, 1, 0];
-  // const correctSecondPlayer = [0, 0, 1];
+  const correctFirstPlayer = [0, 1, 0];
+  const correctSecondPlayer = [0, 0, 1];
 
   const solution = solveMatrixGame(matrix, positionXY)
 
-  console.log("Result (test-v14-A1):");
-  console.log("First player:", solution.firstPlayersSolution);
-  console.log("Second player:", solution.secondPlayersSolution);
-  console.log("Solution:", solution);
+  // console.log("Result (test-v14-A1):");
+  // console.log("First player:", solution.firstPlayersSolution);
+  // console.log("Second player:", solution.secondPlayersSolution);
+  // console.log("Solution:", solution);
 
-  const simulationResult = simulateMatrixGame(
-    matrix,
-    solution.firstPlayersSolution,
-    solution.secondPlayersSolution
-  )
-  printSimulation(simulationResult, positionXY)
-  printSimulationResult(simulationResult, positionXY)
+  // const simulationResult = simulateMatrixGame(
+  //   matrix,
+  //   solution.firstPlayersSolution,
+  //   solution.secondPlayersSolution
+  // )
+  // printSimulation(simulationResult, positionXY)
+  // printSimulationResult(simulationResult, positionXY)
 
   expect(true).toBe(true);
-  // expect(toStrictEqual1Array(correctFirstPlayer, solution.firstPlayersSolution)).toBe(true);
-  // expect(toStrictEqual1Array(correctSecondPlayer, solution.secondPlayersSolution)).toBe(true);
+  expect(toStrictEqual1Array(correctFirstPlayer, solution.firstPlayersSolution)).toBe(true);
+  expect(toStrictEqual1Array(correctSecondPlayer, solution.secondPlayersSolution)).toBe(true);
 });
 
 test("gameSolution_test-v14-A2", () => {
@@ -53,18 +53,18 @@ test("gameSolution_test-v14-A2", () => {
 
   const solution = solveMatrixGame(matrix, positionXY)
 
-  console.log("Result (test-v14-A2):");
-  console.log("First player:", solution.firstPlayersSolution);
-  console.log("Second player:", solution.secondPlayersSolution);
-  console.log("Solution:", solution);
+  // console.log("Result (test-v14-A2):");
+  // console.log("First player:", solution.firstPlayersSolution);
+  // console.log("Second player:", solution.secondPlayersSolution);
+  // console.log("Solution:", solution);
   
-  const simulationResult = simulateMatrixGame(
-    matrix,
-    solution.firstPlayersSolution,
-    solution.secondPlayersSolution
-  )
-  printSimulation(simulationResult, positionXY)
-  printSimulationResult(simulationResult, positionXY)
+  // const simulationResult = simulateMatrixGame(
+  //   matrix,
+  //   solution.firstPlayersSolution,
+  //   solution.secondPlayersSolution
+  // )
+  // printSimulation(simulationResult, positionXY)
+  // printSimulationResult(simulationResult, positionXY)
 
   expect(toStrictEqual1Array(correctFirstPlayer, solution.firstPlayersSolution)).toBe(true);
   expect(toStrictEqual1Array(correctSecondPlayer, solution.secondPlayersSolution)).toBe(true);
