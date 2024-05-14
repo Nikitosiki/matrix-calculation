@@ -5,7 +5,8 @@ import { roundedMatrix } from "./utils";
 export function optimalSolution(
   matrix: number[][],
   positionXY: positionXY,
-  searchMinimum: boolean = false
+  searchMinimum: boolean = false,
+  isLog: boolean = false
 ): referenceSolutionResult {
   const ret: referenceSolutionResult = {
     matrix: matrix,
@@ -25,6 +26,8 @@ export function optimalSolution(
 
   // eslint-disable-next-line no-constant-condition
   for (let index = 0; index < 9999; index++) {
+    isLog && console.log(`Optimal ${index}:`, ret);
+
     let colNumberNegativeZElement = -1;
     const zValues = ret.matrix[ret.matrix.length - 1].slice(0, -1);
 

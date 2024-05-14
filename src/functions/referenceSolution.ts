@@ -33,6 +33,7 @@ export const genPositionXY = (countX: number, countY: number): positionXY => {
 export function referenceSolution(
   matrix: number[][],
   positionXY?: positionXY,
+  isLog: boolean = false
 ): referenceSolutionResult {
   const ret: referenceSolutionResult = {
     matrix: matrix,
@@ -61,6 +62,8 @@ export function referenceSolution(
 
   // eslint-disable-next-line no-constant-condition
   for (let index = 0; index < 9999; index++) {
+    isLog && console.log(`Reference ${index}:`, ret);
+
     const rowNumber = searchForNegativeElement(getSingle(ret.matrix));
     if (rowNumber === null) {
       // Опорний розвёязок вже знайдено
