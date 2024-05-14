@@ -23,7 +23,7 @@ interface MatrixGameSolution extends PlayersSolution {
   strategyType: StrategiesType;
 }
 
-enum StrategiesType {
+export enum StrategiesType {
   PureStrategies,
   MixedStrategies,
   Undefined,
@@ -33,13 +33,16 @@ export function solveMatrixGame(
   matrix: number[][],
   positionXY: positionXY,
 ): MatrixGameSolution {
-  const minGamePrice = findMinGamePrice(matrix);
-  const maxGamePrice = findMaxGamePrice(matrix);
+  const matrixWithoutNegative = deepCloneMatrix(matrix)
+  const minValue = removeNegativeValues(matrixWithoutNegative)
+
+  const minGamePrice = findMinGamePrice(matrixWithoutNegative);
+  const maxGamePrice = findMaxGamePrice(matrixWithoutNegative);
 
   const result =
     minGamePrice === maxGamePrice
-      ? findSolveInPureStrategies(matrix, positionXY)
-      : findSolveInMixedStrategies(matrix, positionXY);
+      ? findSolveInPureStrategies(matrixWithoutNegative, positionXY)
+      : findSolveInMixedStrategies(matrixWithoutNegative, minValue, positionXY);
 
   result.firstPlayersSolution = roundedRow(result.firstPlayersSolution, 100);
   result.secondPlayersSolution = roundedRow(result.secondPlayersSolution, 100);
@@ -49,10 +52,10 @@ export function solveMatrixGame(
 
 function findSolveInMixedStrategies(
   matrix: number[][],
+  minimumValue: number,
   positionXY: positionXY,
 ): MatrixGameSolution {
   let handledMatrix = deepCloneMatrix(matrix);
-  const minimumValue = removeNegativeValues(handledMatrix);
   handledMatrix = generateSimplexMatrix(handledMatrix);
 
   const referenceSolve = referenceSolution(handledMatrix, positionXY);

@@ -25,7 +25,7 @@ export function simulateMatrixGame(
 
   const firstPlayerRandom: number[] = [];
   const secondaryPlayerRandom: number[] = [];
-
+  
   for (let number = 1; number <= numberOfGames; number++) {
       const randomFirstPlayer = Math.random();
       const firstPlayerDecision = findSegmentIndex(
@@ -83,18 +83,9 @@ export function printSimulationResult(simulation: SimulationResult, positionXY: 
       secondPlayerDecisions.push(simulation.secondPlayerDecisionIndexes.filter((value) => value === index).length);
   }
 
-  console.log();
-  console.log("First player");
-  console.log(firstPlayerDecisions.map((value) => round(value / simulation.firstPlayerDecisionIndexes.length)));
-
-  console.log();
-  console.log("Secondary player");
-  console.log(secondPlayerDecisions.map((value) => round(value / simulation.secondPlayerDecisionIndexes.length)));
-
-  console.log();
-  console.log("Game price");
-  console.log(simulation.firstPlayerAverage.slice(-1)[0]);
-  console.log();
+  console.log("First player: ", firstPlayerDecisions.map((value) => round(value / simulation.firstPlayerDecisionIndexes.length)));
+  console.log("Secondary player: ", secondPlayerDecisions.map((value) => round(value / simulation.secondPlayerDecisionIndexes.length)));
+  console.log("Game price: ", simulation.firstPlayerAverage.slice(-1)[0]);
 }
 
 function round(input: number): number {
