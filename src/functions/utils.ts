@@ -123,4 +123,3 @@ export function addColumnPlaceholder(matrix: number[][], newColumnPlaceholder: n
   }
   return result;
 }
-
