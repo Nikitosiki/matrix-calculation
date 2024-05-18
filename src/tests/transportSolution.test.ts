@@ -158,7 +158,7 @@ test("transportSolution_test-simplex-2", () => {
   expect(cost).toBe(expectedCost);
 });
 
-test("transportSolution_test-v14", () => {
+test("transportSolution_test-simplex-v14", () => {
   const input: number[][] = [
     [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 95],
     [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 75],
