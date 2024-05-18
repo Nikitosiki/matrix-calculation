@@ -184,7 +184,7 @@ test("transportSolution_test-v14", () => {
   );
   const optimal = optimalSolution(reference.matrix!, reference.positionXY);
 
-  console.log("Result (test-simplex-2):");
+  console.log("Result (test-simplex-v14):");
   console.log("Removing null lines: ", matrixWithoutNullLines.matrix);
   console.log("Reference: ", reference.matrix);
   console.log("Optimal: ", optimal.matrix);
