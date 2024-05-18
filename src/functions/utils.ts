@@ -2,6 +2,10 @@ export function deepCloneMatrix<T>(array: T[][]): T[][] {
   return array.map((row) => row.slice());
 }
 
+export function deepCloneArray<T>(array: T[]): T[] {
+  return array.slice();
+}
+
 export function isSquareMatrix(matrix: number[][]): boolean {
   const rows = matrix.length;
   if (rows === 0) {
