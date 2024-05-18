@@ -38,3 +38,22 @@ test("transportSolution_test-2", () => {
 
   expect(result.cost).toBe(expectedCost);
 });
+
+test("transportSolution_test-v14", () => {
+  const matrix = [
+    [11, 12, 8, 10],
+    [19, 22, 24, 16],
+    [27, 23, 17, 22],
+    [15, 13, 18, 21],
+  ];
+
+  const expectedCost = 57
+
+  const result = solveAssignmentProblem(matrix);
+
+  console.log("Result (test-v14):");
+  console.log("Assignments matrix: ", result.assignments);
+  console.log("Cost by matrix: ", result.cost);
+
+  expect(result.cost).toBe(expectedCost);
+});
