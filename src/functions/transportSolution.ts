@@ -352,7 +352,7 @@ function referenceSolveByNorthwestCorner(input: Transport): number[][] {
   }
 
   console.log("Reference solve by Northwest Corner\n", solve);
-  console.log("Cost\n", findCost(problem, solve));
+  console.log("Cost: ", findCost(problem, solve));
 
   return solve;
 }
