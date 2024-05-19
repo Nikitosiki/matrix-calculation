@@ -15,9 +15,9 @@ test("transportSolution_test-1", () => {
 
   const result = solveAssignmentProblem(matrix);
 
-  console.log("Result (test-1):");
-  console.log("Assignments matrix: ", result.assignments);
-  console.log("Cost by matrix: ", result.cost);
+  // console.log("Result (test-1):");
+  // console.log("Assignments matrix: ", result.assignments);
+  // console.log("Cost by matrix: ", result.cost);
 
   expect(result.cost).toBe(expectedCost);
 });
@@ -34,9 +34,9 @@ test("transportSolution_test-2", () => {
 
   const result = solveAssignmentProblem(matrix);
 
-  console.log("Result (test-2):");
-  console.log("Assignments matrix: ", result.assignments);
-  console.log("Cost by matrix: ", result.cost);
+  // console.log("Result (test-2):");
+  // console.log("Assignments matrix: ", result.assignments);
+  // console.log("Cost by matrix: ", result.cost);
 
   expect(result.cost).toBe(expectedCost);
 });
@@ -53,9 +53,9 @@ test("transportSolution_test-v14", () => {
 
   const result = solveAssignmentProblem(matrix);
 
-  console.log("Result (test-v14):");
-  console.log("Assignments matrix: ", result.assignments);
-  console.log("Cost by matrix: ", result.cost);
+  // console.log("Result (test-v14):");
+  // console.log("Assignments matrix: ", result.assignments);
+  // console.log("Cost by matrix: ", result.cost);
 
   expect(result.cost).toBe(expectedCost);
 });
@@ -103,10 +103,10 @@ test("transportSolution_test-simplex-1", () => {
   const optimal = optimalSolution(reference.matrix!, reference.positionXY);
   const cost = Math.abs(optimal.matrix.slice(-1)[0].slice(-1)[0]);
 
-  console.log("Result (test-simplex-1):");
-  console.log("Reference: ", reference.matrix);
-  console.log("Optimal: ", optimal.matrix);
-  console.log("Cost by matrix: ", cost);
+  // console.log("Result (test-simplex-1):");
+  // console.log("Reference: ", reference.matrix);
+  // console.log("Optimal: ", optimal.matrix);
+  // console.log("Cost by matrix: ", cost);
 
   expect(cost).toBe(expectedCost);
 });
@@ -152,10 +152,10 @@ test("transportSolution_test-simplex-v14", () => {
   const optimal = optimalSolution(reference.matrix!, reference.positionXY);
   const cost = Math.abs(optimal.matrix.slice(-1)[0].slice(-1)[0]);
 
-  console.log("Result (test-simplex-1):");
-  console.log("Reference: ", reference.matrix);
-  console.log("Optimal: ", optimal.matrix);
-  console.log("Cost by matrix: ", cost);
+  // console.log("Result (test-simplex-1):");
+  // console.log("Reference: ", reference.matrix);
+  // console.log("Optimal: ", optimal.matrix);
+  // console.log("Cost by matrix: ", cost);
 
   expect(cost).toBe(expectedCost);
 });
