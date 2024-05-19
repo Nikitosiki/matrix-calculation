@@ -2,7 +2,7 @@ import { solveAssignmentProblem } from "../functions/assignmentSolution";
 import { optimalSolution } from "../functions/optimalSolution";
 import { referenceSolution } from "../functions/referenceSolution";
 
-test("transportSolution_test-1", () => {
+test("assignmentSolution_test-1", () => {
   const matrix = [
     [2, 4, 1, 3, 3],
     [1, 5, 4, 1, 2],
@@ -22,7 +22,7 @@ test("transportSolution_test-1", () => {
   expect(result.cost).toBe(expectedCost);
 });
 
-test("transportSolution_test-2", () => {
+test("assignmentSolution_test-2", () => {
   const matrix = [
     [2, 10, 9, 7],
     [15, 4, 14, 8],
@@ -41,7 +41,7 @@ test("transportSolution_test-2", () => {
   expect(result.cost).toBe(expectedCost);
 });
 
-test("transportSolution_test-v14", () => {
+test("assignmentSolution_test-v14", () => {
   const matrix = [
     [11, 12, 8, 10],
     [19, 22, 24, 16],
@@ -62,7 +62,7 @@ test("transportSolution_test-v14", () => {
 
 // ----------------------------------------------------------------
 
-test("transportSolution_test-simplex-1", () => {
+test("assignmentSolution_test-simplex-1", () => {
   const matrix = [
     [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -111,7 +111,7 @@ test("transportSolution_test-simplex-1", () => {
   expect(cost).toBe(expectedCost);
 });
 
-test("transportSolution_test-simplex-v14", () => {
+test("assignmentSolution_test-simplex-v14", () => {
   const matrix = [
     [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
