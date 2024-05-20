@@ -29,7 +29,7 @@ function findAssignmentCost(assignmentMatrix: number[][], inputMatrix: number[][
           }
       }
   }
-  console.log("findAssignmentCost", assignmentMatrix, inputMatrix, cost);
+//   console.log("findAssignmentCost", assignmentMatrix, inputMatrix, cost);
   return cost;
 }
 
@@ -82,7 +82,6 @@ function handleRemoveZeroCells(matrix: number[][]): void {
       for (let r = 0; r < matrix.length; r++) {
           for (let c = 0; c < matrix[r].length; c++) {
               if (removedRowIndices.includes(r) || removedColIndices.includes(c)) continue;
-
               if (minElement === null || matrix[r][c] < minElement) {
                   minElement = matrix[r][c];
               }
@@ -108,6 +107,9 @@ function handleRemoveZeroCells(matrix: number[][]): void {
               }
           }
       }
+
+      console.log("Min element: ", minElement)
+      console.log("Matrix after 'min': ", matrix)
   }
 }
 
@@ -171,18 +173,21 @@ function minusMinByCols(matrix: number[][]): void {
               min = matrix[r][j];
           }
       }
-
+      console.log(`Column ${j+1} found 'min': ${min}`)
       for (let r = 0; r < matrix.length; r++) {
           matrix[r][j] -= min;
       }
   }
+  console.log("Matrix after: ", matrix)
 }
 
 function minusMinByRows(matrix: number[][]): void {
   for (let i = 0; i < matrix.length; i++) {
       const min = Math.min(...matrix[i]);
+      console.log(`Line ${i+1} found 'min': ${min}`)
       for (let c = 0; c < matrix[i].length; c++) {
           matrix[i][c] -= min;
       }
   }
+  console.log("Matrix after: ", matrix)
 }
