@@ -1,6 +1,6 @@
-import { findResultsFor, solveMatrixGame } from "./gameSolution";
+import { solveMatrixGame } from "./gameSolution";
 import { optimalSolution } from "./optimalSolution";
-import { referenceSolution, referenceSolutionResult } from "./referenceSolution";
+import { calcSolution, referenceSolution, referenceSolutionResult } from "./referenceSolution";
 import { roundedRow } from "./utils";
 
 export function findCompromiseSolution(
@@ -16,7 +16,7 @@ export function findCompromiseSolution(
 
   findAllOptimalSolves(matrices, optimalSolves);
 
-  const matrixX = optimalSolves.map((solve) => findResultsFor(solve));
+  const matrixX = optimalSolves.map((solve) => calcSolution(solve));
   const coefficients = Array.from({ length: matrices.length }, () =>
     new Array(matrices.length).fill(0),
   );
@@ -26,7 +26,7 @@ export function findCompromiseSolution(
 
   const weightingCoefficients = findWeightingCoefficients(coefficients);
 
-  return findCompromiseVector(matrixX, weightingCoefficients);
+  return roundedRow(findCompromiseVector(matrixX, weightingCoefficients));
 }
 
 function findWeightingCoefficients(coefficients: number[][]): number[] {
@@ -119,7 +119,7 @@ function findAllOptimalSolves(
     console.log("# left: ", optimalSolveResult.positionXY.left);
     console.log("# top: ", optimalSolveResult.positionXY.top);
     console.log("# end matrix: ", optimalSolveResult.matrix);
-    console.log("# solve: ", findResultsFor(optimalSolveResult));
+    console.log("# solve: ", calcSolution(optimalSolveResult));
     console.log("_______________________________");
 
     optimalSolves[index] = optimalSolveResult;
