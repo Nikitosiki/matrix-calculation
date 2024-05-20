@@ -1,7 +1,7 @@
 import { solveMatrixGame } from "./gameSolution";
 import { optimalSolution } from "./optimalSolution";
 import { calcSolution, referenceSolution, referenceSolutionResult } from "./referenceSolution";
-import { roundedRow } from "./utils";
+import { roundedMatrix, roundedRow } from "./utils";
 
 export function findCompromiseSolution(
   matrices: number[][][],
@@ -80,7 +80,7 @@ function findNonOptimalityCoefficients(
     }
   }
 
-  console.log("Matrix of non-optimal solutions: ", coefficients);
+  console.log("Matrix of non-optimal solutions: ", roundedMatrix(coefficients));
 }
 
 function sumCX(
