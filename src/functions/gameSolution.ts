@@ -210,7 +210,7 @@ function findDualResultsFor(
   return res;
 }
 
-function findResultsFor(output: referenceSolutionResult): number[] {
+export function findResultsFor(output: referenceSolutionResult): number[] {
   const res: number[] = new Array(output.positionXY.left.length).fill(0);
   for (let index = 0; index < output.positionXY.left.length; index++) {
     if (output.positionXY.left[index].startsWith("x")) {
