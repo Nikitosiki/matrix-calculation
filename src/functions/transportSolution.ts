@@ -79,9 +79,9 @@ function potentialStep(problem: Transport, baseArray: number[][]): void {
           }
         }
       }
-      console.log("baseArray: ", baseArray);
-      console.log("rowsPotential: ", rowsPotential.join("\t"));
-      console.log("colsPotential: ", colsPotential.join("\t"));
+      // console.log("baseArray: ", baseArray);
+      // console.log("rowsPotential: ", rowsPotential.join("\t"));
+      // console.log("colsPotential: ", colsPotential.join("\t"));
     }
 
     console.log("Rows potential: ", rowsPotential.join("\t"));

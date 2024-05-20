@@ -22,9 +22,10 @@ test("transportSolution_test-1", () => {
     [10, 15, 25],
   ];
 
+  console.log("Result (test-1):");
+
   const result = solveTransport(input);
 
-  console.log("Result (test-1):");
   console.log("Result plan: ", result.solve);
   console.log("Cost by plan: ", result.price);
 
@@ -50,9 +51,10 @@ test("transportSolution_test-2", () => {
     [0, 80, 0],
   ];
 
+  console.log("Result (test-2):");
+
   const result = solveTransport(input);
 
-  console.log("Result (test-2):");
   console.log("Result plan: ", result.solve);
   console.log("Cost by plan: ", result.price);
 
@@ -78,9 +80,10 @@ test("transportSolution_test-v14", () => {
     [45, 0, 0, 0],
   ];
 
+  console.log("Result (test-v14):");
+
   const result = solveTransport(input);
 
-  console.log("Result (test-v14):");
   console.log("Result plan: ", result.solve);
   console.log("Cost by plan: ", result.price);
 
@@ -121,6 +124,9 @@ test("transportSolution_test-simplex-1", () => {
   console.log("Optimal: ", optimal.matrix);
 
   const cost = Math.abs(optimal.matrix?.slice(-1)[0]?.slice(-1)[0]);
+
+  console.log("Cost: ", cost);
+
   expect(cost).toBe(expectedCost);
 });
 
@@ -155,6 +161,9 @@ test("transportSolution_test-simplex-2", () => {
   console.log("Optimal: ", optimal.matrix);
 
   const cost = Math.abs(optimal.matrix?.slice(-1)[0]?.slice(-1)[0]);
+
+ console.log("Cost: ", cost);
+
   expect(cost).toBe(expectedCost);
 });
 
@@ -190,5 +199,8 @@ test("transportSolution_test-simplex-v14", () => {
   console.log("Optimal: ", optimal.matrix);
 
   const cost = Math.abs(optimal.matrix?.slice(-1)[0]?.slice(-1)[0]);
+
+ console.log("Cost: ", cost);
+
   expect(cost).toBe(expectedCost);
 });
