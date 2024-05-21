@@ -89,7 +89,7 @@ function handleRemoveZeroCells(matrix: number[][]): void {
       }
 
       if (minElement === null) {
-          console.log("Do not have minimum element");
+          console.log("Done");
           return;
       }
 
