@@ -124,13 +124,13 @@ function potentialStep(problem: Transport, baseArray: number[][]): void {
       prev.value > current.value ? prev : current,
     );
 
-    // console.log(
-    //   "Cell to optimization = [" +
-    //     cellToOptimization.row +
-    //     "; " +
-    //     cellToOptimization.col +
-    //     "]",
-    // );
+    console.log(
+      "Cell to optimization = [" +
+        cellToOptimization.row +
+        "; " +
+        cellToOptimization.col +
+        "]",
+    );
 
     const path = findConnectedPath(baseArray, cellToOptimization);
 
@@ -283,8 +283,7 @@ function findConnectedPath(
 
   const res = findClosedPath(matrix, start.row, start.col);
 
-  // console.log("Vertices");
-  // console.log(res);
+  console.log("Vertices: ", res);
 
   return res;
 }
