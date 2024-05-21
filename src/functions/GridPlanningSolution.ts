@@ -40,30 +40,30 @@ export class Task {
 
 export function optimalSolution(tasksList: Task[]): Task[] {
   const tasks = makeStartTasksList(tasksList);
-  console.log("Constructed list of starting tasks");
+  // console.log("Constructed list of starting tasks");
 
   calculateEarlyStarts(tasks);
-  console.log("Calculated early starts");
+  // console.log("Calculated early starts");
 
   calculateLateFinishes(tasks);
-  console.log("Calculated late finishes");
+  // console.log("Calculated late finishes");
 
   return tasks;
 }
 
 export function printTaskList(tasksList: Task[]): void {
   tasksList = [...tasksList].sort((a, b) => a.taskId - b.taskId);
-  console.log("______ TASKS ______");
+  console.log("Tasks: ");
   tasksList.forEach((task) => {
-    console.log(`TASK ${task.taskId}`);
-    console.log(`Duration     ${task.duration}`);
-    console.log(`Resources    ${task.resources}`);
-    console.log(`Early start  ${task.earlyStart}`);
-    console.log(`Early finish ${task.earlyFinish}`);
-    console.log(`Late start   ${task.lateStart}`);
-    console.log(`Late finish  ${task.lateFinish}`);
-    console.log(`Reserve time ${task.reserveTime}`);
-    console.log();
+    // console.log(task);
+    console.log(`Task: ${task.taskId}`);
+    console.log(`Duration: ${task.duration}`);
+    // console.log(`Resources: ${task.resources}`);
+    console.log(`Early start: ${task.earlyStart}`);
+    console.log(`Early finish: ${task.earlyFinish}`);
+    // console.log(`Late start: ${task.lateStart}`);
+    // console.log(`Late finish: ${task.lateFinish}`);
+    // console.log(`Reserve time: ${task.reserveTime}`);
   });
 
   const criticalTasks = getCriticalTaskChain(tasksList);
@@ -78,10 +78,8 @@ export function printTaskList(tasksList: Task[]): void {
     0,
     criticalTasksPath.length - 3,
   );
-  console.log("Critical path");
-  console.log(criticalTasksPath);
-  console.log("Project duration");
-  console.log(Math.max(...criticalTasks.map((task) => task.earlyFinish)));
+  console.log("Critical path: ", criticalTasksPath);
+  console.log("Project duration: ", Math.max(...criticalTasks.map((task) => task.earlyFinish)));
 }
 
 export function printLoadChart(tasksList: Task[]): void {
@@ -104,7 +102,7 @@ export function printLoadChart(tasksList: Task[]): void {
 
   const maxHeight = Math.max(...timeToLoad.map(([_, load]) => load));
 
-  console.log("_____ Load chart _____");
+  console.log("Load chart: ");
 
   const maxLabelLength = Math.max(
     ...timeToLoad.map(([time]) => time.toString().length),
@@ -121,14 +119,24 @@ export function printLoadChart(tasksList: Task[]): void {
         process.stdout.write(" ".repeat(maxLabelLength + 1));
       }
     }
-    console.log();
   }
+
+  // for (let height = maxHeight; height >= 0; height--) {
+  //   let row = "";
+  //   for (const [, dayHeight] of timeToLoad) {
+  //     if (dayHeight > height) {
+  //       row += "*".padEnd(maxLabelLength + 1, " ");
+  //     } else {
+  //       row += " ".repeat(maxLabelLength + 1);
+  //     }
+  //   }
+  //   console.log(row);
+  // }
 
   // Print axis
   for (const [day] of timeToLoad) {
     process.stdout.write(labelFormat(day) + " ");
   }
-  console.log();
 }
 
 export function getCriticalTaskChain(tasks: Task[]): Task[] {
