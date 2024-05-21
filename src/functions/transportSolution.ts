@@ -135,6 +135,7 @@ function potentialStep(problem: Transport, baseArray: number[][]): void {
     const path = findConnectedPath(baseArray, cellToOptimization);
 
     let minimum = baseArray[path[1][0]][path[1][1]];
+    console.log("min: ", minimum);
     for (let i = 1; i < path.length; i += 2) {
       const value = baseArray[path[i][0]][path[i][1]];
       if (value < minimum) {
